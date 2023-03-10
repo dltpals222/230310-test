@@ -64,12 +64,16 @@
 
 
     //root 아이들
-    const TagNames=['header','main']
+    const TagNames=['header','main','div']
     for(let i=0;i<TagNames.length;i++){
       makeTag(root,TagNames[i],1)
     }
     const header = document.querySelector('header')
     const main = document.querySelector('main')
+    setAttri(root.children[2],"id",'prop-popup')
+    const propPopup = document.getElementById('prop-popup')
+
+
     //header 구성
     const headerMakeTag = [header,'ul',2]
     // const headerChildTag = [header.children[0], 'li',3] //이렇게 적으면 왜 안되지...
@@ -89,6 +93,7 @@
 
 
     //teamInfo 구성
+    //teamInfo child
     const teamInfoMakeTag = [
       [teamInfo,'ul',1],
       [teamInfo,'div',1],
@@ -96,6 +101,7 @@
     for(let i=0;i<teamInfoMakeTag.length;i++){
       makeTag(teamInfoMakeTag[i][0],teamInfoMakeTag[i][1],teamInfoMakeTag[i][2])
     }
+    //teamInfo granchild
     const teamInfoMakeTagChild = [
       [teamInfo.children[0],'li',5],
       [teamInfo.children[1],'ul',2],
@@ -104,26 +110,28 @@
       makeTag(teamInfoMakeTagChild[i][0],teamInfoMakeTagChild[i][1],teamInfoMakeTagChild[i][2])
     }
     makeTag(teamInfo.children[1].children[0],'li',1)
-    makeTag(teamInfo.children[1].children[1],'li',4)
-    setAttri(teamInfo.children[1].children[1],'id','teamInfoProps')
-    const teamProps = document.getElementById('teamInfoProps')
+
 
 
     //trainingInfo 구성
-
-    //위에서는 됐는데 갑자기 구동이 안됨... 왜??
-    // const traInfoMakeTag = [
-    //   [traInfo,'div',1]
-    //   [traInfo,'ul',1]
-    // ]
-
-    // for(let i=0;i<traInfoMakeTag.length;i++){
-    //   makeTag(traInfoMakeTag[i][0],traInfoMakeTag[i][1],traInfoMakeTag[i][2])
-    // }
+    // makeTag(traInfo,'div',1)
+    // makeTag(traInfo,'ul',1)
+    // makeTag(traInfo.children[1],'li',9)
     
-    makeTag(traInfo,'div',1)
-    makeTag(traInfo,'ul',1)
-    makeTag(traInfo.children[1],'li',9)
+    //위에서는 됐는데 갑자기 구동이 안됨... 왜??
+    const traInfoMakeTag = [
+      [traInfo,'div',1]
+      [traInfo,'ul',1]
+    ]
+
+    for(let i=0;i<traInfoMakeTag.length;i++){
+      makeTag(traInfoMakeTag[i][0],traInfoMakeTag[i][1],traInfoMakeTag[i][2])
+    }
+    
+
+    //
+
+
 
     //HTML markup 끝------------------------------------------------
     //CSS 시작 -----------------------------------------------------
@@ -141,7 +149,9 @@
     //root CSS
     StyleWidHeiBorBackCol(root,"100vw","100vh")
     flexJustifyAlignDirectionWrap(root, "flex","","center","column",)
-    
+    // for(let i=0; i<root.children.length;i++){
+    //   root.children[i].style.width = "95vw";
+    // }
 
 
     //header CSS 시작
@@ -172,12 +182,12 @@
 
     //#teamInfo > ul;
     StyleWidHeiBorBackCol(teamInfo.children[0],"95%","20%","","#ccc")
-    flexJustifyAlignDirectionWrap(teamInfo.children[0],"flex","center","space-evenly")
+    flexJustifyAlignDirectionWrap(teamInfo.children[0],"flex","space-evenly",)
     
 
     //#teamInfo > ul > li;
     for(let i=0;i<teamInfo.children[0].children.length;i++){
-      StyleWidHeiBorBackCol(teamInfo.children[0].children[i],"100px","100%","1px solid black",)
+      StyleWidHeiBorBackCol(teamInfo.children[0].children[i],"25%","100%","1px solid black",)
     }
     
 
@@ -195,12 +205,7 @@
 
 
     //#teamInfo > ul(teamInfoProps) 
-    
-    
-    //#teamInfoProps > li
-    for(let i=0;i<teamProps.children.length;i++){
-      StyleWidHeiBorBackCol(teamProps.children[i],)
-    }
+
 
 
     
