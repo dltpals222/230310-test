@@ -14,50 +14,115 @@
     console.log(a); // 위 하이퍼링크된 js 파일 데이터
     // 자유롭게 활용
 
-    //function 시작-----------------------------------------
-    //태그 갯수대로 넣기
-    function tagMake (parentName, tagName, Numbers) {
-      for(let iName=0;iName<Numbers;iName++){
-        const tagElement = document.createElement(tagName);
-        parentName.appendChild(tagElement)
+    const root = document.getElementById('root')
+
+    //function 시작 ------------------------------------------------
+    //태그 만들기
+    function makeTag (parentName, tagName, addNum) {
+      for(let I=0;I<addNum;I++){
+        const tagCreateElement = document.createElement(tagName);
+        parentName.appendChild(tagCreateElement);
       }
     }
-
-    //function 끝--------------------------------------------
-    //html 구성 시작 ----------------------------------------
-    const root = document.getElementById('root');
-
-    //root의 아이들 
-    const rootChildTagName = ['header', 'main'];
-    for(let i=0;i<rootChildTagName.length;i++){
-      tagMake(root,rootChildTagName[i],1)
+    //선택자 입력
+    function setAttri (parentName, tagStyle, tagInnerText) {
+      parentName.setAttribute(tagStyle, tagInnerText);
     }
-    const header = document.querySelector('header');
-    const main = document.querySelector('main');
+
+    //innerHTML입력
+    function tagInnerHTML (childName, HTMLInner) {
+      childHTML.innerHTML = HTMLInner;
+    }
+
+    //CSS Flex 5가지 옵션 모음
+    function flexJustifyAlignDirectionWrap (childName, innerDisplay, innerJustify, innerAlign, innerFlexDirection,innerFlexWrap){
+      childName.style.display = innerDisplay;
+      childName.style.justifyContent = innerJustify;
+      childName.style.alignItems = innerAlign;
+      childName.style.flexDirection = innerFlexDirection;
+      childName.style.flexWrap = innerFlexWrap;
+    }
+
+
+    //function 끝---------------------------------------------------
+    //HTML markup 시작 ---------------------------------------------
+
+
+
+    //root 아이들
+    const TagNames=['header','main']
+    for(let i=0;i<TagNames.length;i++){
+      makeTag(root,TagNames[i],1)
+    }
+    const header = document.querySelector('header')
+    const main = document.querySelector('main')
+    //header 구성
+    const headerMakeTag = [header,'ul',2]
+    // const headerChildTag = [header.children[0], 'li',3] //이렇게 적으면 왜 안되지...
+    makeTag(headerMakeTag[0],headerMakeTag[1],headerMakeTag[2])
+    makeTag(header.children[0],'li',3)
+
+
+
+    //main 구성
+    const mainMakeTag = [main,'section',2]
+    makeTag(mainMakeTag[0],mainMakeTag[1],mainMakeTag[2])
+    setAttri(main.children[0],'id',"teammateInfo")
+    setAttri(main.children[1],'id',"trainingInfo")
+    const teamInfo = document.getElementById('teammateInfo')
+    const traInfo = document.getElementById('trainingInfo')
+
+
+
+    //teamInfo 구성
+    const teamInfoMakeTag = [
+      [teamInfo,'ul',1],
+      [teamInfo,'div',1],
+    ]
+    for(let i=0;i<teamInfoMakeTag.length;i++){
+      makeTag(teamInfoMakeTag[i][0],teamInfoMakeTag[i][1],teamInfoMakeTag[i][2])
+    }
+    const teamInfoMakeTagChild = [
+      [teamInfo.children[0],'li',5],
+      [teamInfo.children[1],'div',1],
+      [teamInfo.children[1],'ul',1],
+    ]
+    for(let i=0;i<teamInfoMakeTagChild.length;i++){
+      makeTag(teamInfoMakeTagChild[i][0],teamInfoMakeTagChild[i][1],teamInfoMakeTagChild[i][2])
+    }
+    makeTag(teamInfo.children[1].children[1],'li',4)
+    setAttri(teamInfo.children[1].children[1],'id','teamInfoProps')
+    const teamProps = document.getElementById('teamInfoProps')
+
+
+    //trainingInfo 구성
+
+    //위에서는 됐는데 갑자기 구동이 안됨... 왜??
+    // const traInfoMakeTag = [
+    //   [traInfo,'div',1]
+    //   [traInfo,'ul',1]
+    // ]
+
+    // for(let i=0;i<traInfoMakeTag.length;i++){
+    //   makeTag(traInfoMakeTag[i][0],traInfoMakeTag[i][1],traInfoMakeTag[i][2])
+    // }
+    
+    makeTag(traInfo,'div',1)
+    makeTag(traInfo,'ul',1)
+    makeTag(traInfo.children[1],'li',9)
+
+    //HTML markup 끝------------------------------------------------
+    
+    const AllUl = document.getElementsByTagName('ul')
+    const astric = document.getElementsByTagName('*')
     
 
 
-    //header의 아이들 구성
-    const headerTag = [
-      ['ul','div'], 
-      [1,1],
-      ['li'], 
-      [3],
-    ];
-    //header의 아이들
-    for(let i=0;i<headerTag[0].length;i++){
-      tagMake(header, headerTag[0][i],headerTag[1][i])
-      }
-    //header의 손자
-    for(let i=0; i<headerTag[0].length;i++){
-      for(let j=0; j<headerTag[2].length;i++){
-        tagMake(header.children[j],headerTag[2][i],headerTag[3][i])
-      }
-    }
-    console.log(headerTag[2])
-    
+
     
 
+    
+    
   </script>
 </body>
 </html>
