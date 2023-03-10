@@ -43,6 +43,20 @@
       childName.style.flexWrap = innerFlexWrap;
     }
 
+    //CSS style 설정 4가지
+    function StyleWidHeiBorBackCol (childName, widthText, heightText, borderText, backgroundColorText ){
+      childName.style.width = widthText;
+      childName.style.height = heightText;
+      childName.style.border = borderText;
+      childName.style.backgroundColor = backgroundColorText;
+    }
+
+    function StyleFontSizeColorWeight (childName, fontSizeText, fontColorText, fontWeightText){
+      childName.style.fontSize = fontSizeText;
+      childName.style.color = fontColorText;
+      childName.style.fontWeight = fontWeightText;
+    }
+
 
     //function 끝---------------------------------------------------
     //HTML markup 시작 ---------------------------------------------
@@ -84,12 +98,12 @@
     }
     const teamInfoMakeTagChild = [
       [teamInfo.children[0],'li',5],
-      [teamInfo.children[1],'div',1],
-      [teamInfo.children[1],'ul',1],
+      [teamInfo.children[1],'ul',2],
     ]
     for(let i=0;i<teamInfoMakeTagChild.length;i++){
       makeTag(teamInfoMakeTagChild[i][0],teamInfoMakeTagChild[i][1],teamInfoMakeTagChild[i][2])
     }
+    makeTag(teamInfo.children[1].children[0],'li',1)
     makeTag(teamInfo.children[1].children[1],'li',4)
     setAttri(teamInfo.children[1].children[1],'id','teamInfoProps')
     const teamProps = document.getElementById('teamInfoProps')
@@ -112,14 +126,82 @@
     makeTag(traInfo.children[1],'li',9)
 
     //HTML markup 끝------------------------------------------------
-    
-    const AllUl = document.getElementsByTagName('ul')
-    const astric = document.getElementsByTagName('*')
+    //CSS 시작 -----------------------------------------------------
+
+    //전체적용스타일
+    const astric = document.body.getElementsByTagName('*')
+    for(let i=0;i<astric.length;i++){
+      astric[i].style.margin = 0;
+      astric[i].style.padding = 0;
+      astric[i].style.boxSizing = "border-box";
+      astric[i].style.listStyleType = "none";
+    }
+
+
+    //root CSS
+    StyleWidHeiBorBackCol(root,"100vw","100vh")
+    flexJustifyAlignDirectionWrap(root, "flex","","center","column",)
     
 
 
+    //header CSS 시작
+    StyleWidHeiBorBackCol(header,"100vw","15vh")
+    flexJustifyAlignDirectionWrap(header, 'flex','space-between','center','column')
 
+    //header > ul
+    for(let i=0;i<header.children.length;i++){
+      StyleWidHeiBorBackCol(header.children[i],"90vw","7vh","","#333")
+    }
+
+
+    //header CSS 끝
+
+
+
+    //main CSS 시작
+    StyleWidHeiBorBackCol(main,"100vw","84vh")
+    flexJustifyAlignDirectionWrap(main,"flex","space-evenly","center","column")
+
+
+    //main > section 공통부분
+    for(let i=0;i<main.children.length;i++){
+      StyleWidHeiBorBackCol(main.children[i],"90vw","40vh","","#333","")
+      flexJustifyAlignDirectionWrap(main.children[i],"flex","space-evenly","center","column")
+    }
+
+
+    //#teamInfo > ul;
+    StyleWidHeiBorBackCol(teamInfo.children[0],"95%","20%","","#ccc")
+    flexJustifyAlignDirectionWrap(teamInfo.children[0],"flex","center","space-evenly")
     
+
+    //#teamInfo > ul > li;
+    for(let i=0;i<teamInfo.children[0].children.length;i++){
+      StyleWidHeiBorBackCol(teamInfo.children[0].children[i],"100px","100%","1px solid black",)
+    }
+    
+
+    //#teamInfo > div
+    StyleWidHeiBorBackCol(teamInfo.children[1],"95%","72%","","#5F9EA0")
+    
+    
+    //#teamInfo > div > ul
+    flexJustifyAlignDirectionWrap(teamInfo.children[1].children[0],"flex",'flex-end')
+    
+    
+    //#teamInfo > div > ul > li
+    teamInfo.children[1].children[0].children[0].style.margin = "10px";
+    StyleWidHeiBorBackCol(teamInfo.children[1].children[0].children[0],"15vw","5vh","1px solid black","")
+
+
+    //#teamInfo > ul(teamInfoProps) 
+    
+    
+    //#teamInfoProps > li
+    for(let i=0;i<teamProps.children.length;i++){
+      StyleWidHeiBorBackCol(teamProps.children[i],)
+    }
+
 
     
     
